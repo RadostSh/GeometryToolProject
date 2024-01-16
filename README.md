@@ -1,4 +1,4 @@
-# Project Name
+# Geometry Tool
 
 TODO: Write a project description
 
