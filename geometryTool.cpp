@@ -48,7 +48,7 @@ bool Is_Valid_Name(const char* symbol)
 
 void Get_Name_Input(char* name)
 {
-    cin.ignore(); //kakvo pravi maj ignorira, no tuk kakvo ignorira
+    cin.ignore();
     cin.getline(name, MAX_SIZE);
 
     if (!Is_Valid_Name(name))
@@ -110,16 +110,54 @@ void Defines_A_Point(char* point, double& x, double& y)
 
 bool Is_Point_On_Line(double x, double y, double a, double b, double c)
 {
-    double check = a * x + b * y + c;
-    if (Are_Equal(check, 0))
-    {
-        return true;
-    }
-    return false;
+    double equation = a * x + b * y + c;
+    return Are_Equal(equation, 0);
 }
 
-void Choise_Point_On_Line()
+void Print_Line_Equation(double a, double b, double c)
 {
+
+}
+
+void Choise_1_Point_On_Line()
+{
+    double a, b, c;
+    char lineName[MAX_SIZE];
+    Defines_A_Line(lineName, a, b, c);
+    while (a == 0 && b == 0)
+    {
+        std::cout << "At least one of the coefficients A and B must be non-zero. Please try again.";
+        Defines_A_Line(lineName, a, b, c);
+    }
+
+    double x, y;
+    char pointName[MAX_SIZE];
+    Defines_A_Point(pointName, x, y);
+
+    if (Is_Point_On_Line(x, y, a, b, c))
+    {
+        std::cout << "The point " << pointName << " is on the line " << lineName << std::endl;
+    }
+    else {
+        std::cout << "The point " << pointName << " is not on the line " << lineName << std::endl;
+    }
+}
+
+void Choise_2_Åquation_Of_Line_Parallel_to_Selected_Line_And_Passing_Through_Selected_Point()
+{
+    double a, b, c;
+    char lineName[MAX_SIZE];
+    Defines_A_Line(lineName, a, b, c);
+    while (a == 0 && b == 0)
+    {
+        std::cout << "At least one of the coefficients A and B must be non-zero. Please try again.";
+        Defines_A_Line(lineName, a, b, c);
+    }
+
+    double x, y;
+    char pointName[MAX_SIZE];
+    Defines_A_Point(pointName, x, y);
+
 
 }
 
