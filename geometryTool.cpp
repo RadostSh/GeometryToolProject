@@ -14,6 +14,11 @@ bool Is_Number(char ch)
     return ch >= '0' && ch <= '9';
 }
 
+double abs_Value(double num)
+{
+    return (num > 0) ? num : -num;
+}
+
 bool Are_Equal(double num1, double num2)
 {
     double difference = num1 - num2;
@@ -108,7 +113,7 @@ void Defines_A_Point(char* point, double& x, double& y)
     Enter_A_Number(y);
 }
 
-bool Is_Point_On_Line(double x, double y, double a, double b, double c)
+bool is_Point_On_Line(double x, double y, double a, double b, double c)
 {
     double equation = a * x + b * y + c;
     return Are_Equal(equation, 0);
@@ -116,7 +121,50 @@ bool Is_Point_On_Line(double x, double y, double a, double b, double c)
 
 void Print_Line_Equation(double a, double b, double c)
 {
+    if (!Are_Equal(a, 0))
+    {
+        std::cout << a << "x";
+    }
 
+    if (!Are_Equal(b, 0) && !Are_Equal(a, 0))
+    {
+        std::cout << (b > 0 ? " + " : " - ");
+    }
+
+    if (!Are_Equal(b, 0))
+    {
+        if (!Are_Equal(abs_Value(b), 1) || Are_Equal(a, 0))
+        {
+            std::cout << abs_Value(b);
+        }
+        std::cout << "y";
+    }
+
+    if ((!Are_Equal(a, 0) || !Are_Equal(b, 0)) && !Are_Equal(c, 0))
+    {
+        std::cout << (c > 0 ? " + " : " - ");
+    }
+
+    if (!Are_Equal(c, 0))
+    {
+        std::cout << abs_Value(c);
+        ;
+    }
+
+    // Print "= 0"
+    if (!Are_Equal(a, 0) || !Are_Equal(b, 0) || !Are_Equal(c, 0))
+    {
+        std::cout << " = 0";
+    }
+}
+
+void Åquation_Of_Line_Parallel_to_Selected_Line_And_Passing_Through_Selected_Point(double x, double y, double a, double b, double c)
+{
+    if (!is_Point_On_Line(x, y, a, b, c))
+    {
+        c = -a * x - b * y; //line slope coefficient
+    }
+    Print_Line_Equation(a, b, c);
 }
 
 void Choise_1_Point_On_Line()
@@ -124,7 +172,7 @@ void Choise_1_Point_On_Line()
     double a, b, c;
     char lineName[MAX_SIZE];
     Defines_A_Line(lineName, a, b, c);
-    while (a == 0 && b == 0)
+    while (Are_Equal(a, 0) && Are_Equal(b, 0))
     {
         std::cout << "At least one of the coefficients A and B must be non-zero. Please try again.";
         Defines_A_Line(lineName, a, b, c);
@@ -134,7 +182,7 @@ void Choise_1_Point_On_Line()
     char pointName[MAX_SIZE];
     Defines_A_Point(pointName, x, y);
 
-    if (Is_Point_On_Line(x, y, a, b, c))
+    if (is_Point_On_Line(x, y, a, b, c))
     {
         std::cout << "The point " << pointName << " is on the line " << lineName << std::endl;
     }
@@ -148,17 +196,18 @@ void Choise_2_Åquation_Of_Line_Parallel_to_Selected_Line_And_Passing_Through_Sel
     double a, b, c;
     char lineName[MAX_SIZE];
     Defines_A_Line(lineName, a, b, c);
-    while (a == 0 && b == 0)
+    while (Are_Equal(a, 0) && Are_Equal(b, 0))
     {
-        std::cout << "At least one of the coefficients A and B must be non-zero. Please try again.";
+        std::cout << "At least one of the coefficients A and B must be non-zero. Please try again."; // Invalid input!
         Defines_A_Line(lineName, a, b, c);
     }
 
     double x, y;
     char pointName[MAX_SIZE];
     Defines_A_Point(pointName, x, y);
-
-
+    cout << "The equation of the line is: ";
+    Åquation_Of_Line_Parallel_to_Selected_Line_And_Passing_Through_Selected_Point(x, y, a, b, c);
+    cout << endl;
 }
 
 int main()
