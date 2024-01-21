@@ -126,7 +126,6 @@ void defineLine(char* line, double& a, double& b, double& c)
 
     cout << "Coefficient C: ";
     readValidNumber(c);
-
 }
 
 void definePoint(char* point, double& x, double& y)
@@ -140,6 +139,22 @@ void definePoint(char* point, double& x, double& y)
 
     cout << "y = ";
     readValidNumber(y);
+}
+
+void defineParabola(char* parabola, double& a, double& b, double& c)
+{
+    cout << "Enter parabola name: ";
+    readValidName(parabola);
+    cout << "Enter the coefficients:" << endl;
+
+    cout << "Coefficient A: ";
+    readValidNumber(a);
+
+    cout << "Coefficient B: ";
+    readValidNumber(b);
+
+    cout << "Coefficient C: ";
+    readValidNumber(c);
 }
 
 /**
@@ -379,6 +394,17 @@ void printEquationsForBisectors(double x1, double y1, double x2, double y2, doub
     cout << endl;
 }
 
+void calculateTangentLineEquation(double a, double b, double c, double x, double y, double& coeffATangent, double& coeffBTangent, double& coeffCTangent)
+{
+    // Calculate the derivative of the parabola at the given point
+    double derivative = 2 * a * x + b;
+
+    // Use the point-slope form to construct the equation of the tangent line
+    coeffATangent = derivative;
+    coeffBTangent = 1.0;
+    coeffCTangent = -derivative * x + y;
+}
+
 void showOptions() {
     cout << "Available Options in Geometry Tool:" << endl;
     cout << "1. Verify if a specific point is on a defined line." << endl;
@@ -386,7 +412,7 @@ void showOptions() {
     cout << "3. Output a line perpendicular to a given line at a specific point." << endl;
     cout << "4. Find intersection point of two lines." << endl;
     cout << "5. Given the coordinates of three points forming a triangle, construct equations for: \n   Heights;\n   Medians;\n   Bisectors;" << endl;
-
+    cout << "6. Output a equation of the tanget line to a given parabola at a specific point." << endl;
 }
 
 void loadUserSelection(double& selection) {
@@ -528,6 +554,24 @@ void constructEquationsForTriangleElements()
     }
 }
 
+void getTangentLineEquation()
+{
+    double a, b, c;
+    char parabolaName[MAX_SIZE];
+    defineParabola(parabolaName, a, b, c);
+    getValidCoefficients(parabolaName, a, b, c);
+
+    double x, y;
+    char pointName[MAX_SIZE];
+    definePoint(pointName, x, y);
+
+    double coeffATangent, coeffBTangent, coeffCTangent;
+    calculateTangentLineEquation(a, b, c, x, y, coeffATangent, coeffBTangent, coeffCTangent);
+    cout << "The equation of the tangent line is: ";
+    printLineEquation(coeffATangent, coeffBTangent, coeffCTangent);
+    cout << endl;
+}
+
 void selectOption(int num) {
 
     switch (num) {
@@ -536,7 +580,7 @@ void selectOption(int num) {
     case 3: getPerpendicularLineEquation();break;
     case 4: findLinesIntersectionPoint();break;
     case 5: constructEquationsForTriangleElements();break;
-    case 6:break;
+    case 6: getTangentLineEquation();break;
     case 7:break;
     case 8:break;
     default:
