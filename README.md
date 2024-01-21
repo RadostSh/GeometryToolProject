@@ -82,30 +82,26 @@ The Geometry Tool is a program that allows you to perform geometric calculations
 - **User Input:**
 
   - Coordinates of Three Triangle Points: \(A(4, 6)\), \(B(6, 2)\), \(C(8, 8)\)
-
 - **Program Output:**
 
   - The program constructs equations for heights, medians and bisectors of the triangle formed by points \(A(4, 6)\), \(B(6, 2)\) and \(C(8, 8)\).
-
 - **Result:**
 
-  - Heights: 
-
-    ​	-2x - 6y + 44 = 0
-    ​	-4x - 2y + 28 = 0
-    ​	2x - 4y + 16 = 0
-
+  - Heights:
+    -  -2x - 6y + 44 = 0
+  
+    - -4x - 2y + 28 = 0
+  
+    - 2x - 4y + 16 = 0
+  
   - Medians: 
-
-    ​	6x - 2y - 32 = 0
-    ​	2x - 4y + 16 = 0
-    ​	4x + 2y - 28 = 0
-
+    - 6x - 2y - 32 = 0
+    - 2x - 4y + 16 = 0
+    - 4x + 2y - 28 = 0
   - Bisectors: 
-
-    ​	-2x - 6y + 44 = 0
-    ​	-4x - 2y + 38 = 0
-    ​	 2x - 4y + 6 = 0
+    - -2x - 6y + 44 = 0
+    - -4x - 2y + 38 = 0
+    - 2x - 4y + 6 = 0
 
 ## 6) Find Tangent Line to a Parabola at a Given Point
 
