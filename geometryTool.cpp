@@ -12,7 +12,6 @@
 *
 */
 
-
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -405,6 +404,37 @@ void calculateTangentLineEquation(double a, double b, double c, double x, double
     coeffCTangent = -derivative * x + y;
 }
 
+void calculateIntersectionPoints(double parA, double parB, double parC, double lineA, double lineB, double lineC) {
+    // Òhe coefficients in front of the new quadratic equation among equating the two equations
+    double A = parA;
+    double B = parB - lineA;
+    double C = parC - lineC;
+
+    // Calculate the discriminant
+    double discriminant = B * B - 4 * A * C;
+
+    if (calculateAbsolute(discriminant) > EPSILON) {
+        // Two real intersection points
+        double x1 = (-B + sqrt(discriminant)) / (2 * A);
+        double x2 = (-B - sqrt(discriminant)) / (2 * A);
+
+        double y1 = parA * x1 * x1 + parB * x1 + parC;
+        double y2 = parA * x2 * x2 + parB * x2 + parC;
+
+        cout << "Intersection point 1 is: (" << x1 << ", " << y1 << ")" << endl;
+        cout << "Intersection point 2 is: (" << x2 << ", " << y2 << ")" << endl;
+    }
+    else if (checkAreEqual(discriminant, 0)) {
+        // One real intersection point
+        double x = -B / (2 * A);
+        double y = parA * x * x + parB * x + parC;
+        cout << "Intersection point is: (" << x << ", " << y << ")" << endl;
+    }
+    else {
+        cout << "No real intersection points." << endl;
+    }
+}
+
 void showOptions() {
     cout << "Available Options in Geometry Tool:" << endl;
     cout << "1. Verify if a specific point is on a defined line." << endl;
@@ -413,6 +443,7 @@ void showOptions() {
     cout << "4. Find intersection point of two lines." << endl;
     cout << "5. Given the coordinates of three points forming a triangle, construct equations for: \n   Heights;\n   Medians;\n   Bisectors;" << endl;
     cout << "6. Output a equation of the tanget line to a given parabola at a specific point." << endl;
+    cout << "7. Find intersection point between parabola and line." << endl;
 }
 
 void loadUserSelection(double& selection) {
@@ -572,6 +603,21 @@ void getTangentLineEquation()
     cout << endl;
 }
 
+void findIntersectionPointBetweenParabolaAndLine()
+{
+    double parA, parB, parC;
+    char parabolaName[MAX_SIZE];
+    defineParabola(parabolaName, parA, parB, parC);
+    getValidCoefficients(parabolaName, parA, parB, parC);
+
+    double lineA, lineB, lineC;
+    char lineName[MAX_SIZE];
+    defineLine(lineName, lineA, lineB, lineC);
+    getValidCoefficients(lineName, lineA, lineB, lineC);
+
+    calculateIntersectionPoints(parA, parB, parC, lineA, lineB, lineC);
+}
+
 void selectOption(int num) {
 
     switch (num) {
@@ -581,7 +627,7 @@ void selectOption(int num) {
     case 4: findLinesIntersectionPoint();break;
     case 5: constructEquationsForTriangleElements();break;
     case 6: getTangentLineEquation();break;
-    case 7:break;
+    case 7: findIntersectionPointBetweenParabolaAndLine();break;
     case 8:break;
     default:
         cout << "Incorrect input! Please try again and enter a number between 1 and 8.\n";
