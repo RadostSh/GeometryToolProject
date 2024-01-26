@@ -355,7 +355,7 @@ void calculateEquationForMedian(double x1, double y1, double x2, double y2, doub
 {
 	double middleX, middleY;
 	calculateMidpoint(x1, y1, x2, y2, middleX, middleY);
-	calculateEquationOfLineThroughTwoPoints(x1, y1, x2, y2, coeffAMedian, coeffBMedian, coeffCMedian);
+	calculateEquationOfLineThroughTwoPoints(x3, y3, middleX, middleY, coeffAMedian, coeffBMedian, coeffCMedian);
 }
 
 void printEquationsForMedians(double x1, double y1, double x2, double y2, double x3, double y3)
@@ -367,7 +367,7 @@ void printEquationsForMedians(double x1, double y1, double x2, double y2, double
 	printLineEquation(coeffAMedian, coeffBMedian, coeffCMedian);
 	cout << endl;
 
-	calculateEquationForMedian(x3, y3, x1, y1, x2, y2, coeffAMedian, coeffBMedian, coeffCMedian);
+	calculateEquationForMedian(x1, y1, x3, y3, x2, y2, coeffAMedian, coeffBMedian, coeffCMedian);
 	printLineEquation(coeffAMedian, coeffBMedian, coeffCMedian);
 	cout << endl;
 
@@ -681,7 +681,7 @@ void findIntersectionPointBetweenParabolaAndLine()
  * Calculates the intersection points between the lines and determines the type
  * of quadrilateral formed based on side lengths and angles.
  * Prints the result indicating whether it's a Square, Rectangle, Parallelogram,
- * or a generic Quadrilateral.
+ * or also indicates if the provided lines do not form a quadrilateral.
 */
 void determineShapeOfQuadrilateral()
 {
