@@ -95,9 +95,9 @@ The Geometry Tool is a program that allows you to perform geometric calculations
     - 2x - 4y + 16 = 0
   
   - Medians: 
-    - 6x - 2y - 32 = 0
-    - 2x - 4y + 16 = 0
-    - 4x + 2y - 28 = 0
+    - x + 3y - 22 = 0
+    - -5x + 30 = 0
+    - 4x - 3y - 8 = 0
   - Bisectors: 
     - -2x - 6y + 44 = 0
     - -4x - 2y + 38 = 0
